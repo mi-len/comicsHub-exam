@@ -1,54 +1,67 @@
 import React, { Component } from 'react'
+import '../../styles/styles-m.css'
+import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
-import ValidOwnerCheck from '../home/ValidOwnerCheck'
 
 export default class Ad extends Component {
 
-    validOwner = () => {
-        if (this.props._acl.creator === sessionStorage.getItem('id') || this.props.isAdm === 1) {
-            return( 
-                <ul>
-                    <li className="action">
-                        <Link className="editAd" to={'/edit/' + this.props._id}>edit</Link>
-                    </li>
-                    <li className="action">
-                        <Link className="delAd" to={'/delete/' + this.props._id}>delete</Link>
-                    </li>
-                </ul>
-            ) 
-        } else {
-           return null
-        }
-    }
+  validOwner = () => {
+    if (this.props._acl.creator === sessionStorage.getItem('id') || this.props.isAdm) {
+      return (
+        <span>
+          <Link to={'/edit/' + this.props._id} data-toggle="tooltip" data-placement="right" title="Edit Ad">
+            <i className="far fa-edit card_edit_i"></i>
+          </Link>
 
-    
-    
-
-    render = () => {
-        return(
-            <div className="ad" >
-                <div className="title">
-                    {this.props.title}
-                </div>
-                <div className='container'>
-                    <div className='img_thumb'>
-                        <img src={this.props.img_url ? this.props.img_url : 'https://www.pickeringtest.com/themes/shared/common/images/placeholder.png'} alt='thumbnail'/>
-                    </div>
-                    <div>
-                        <div className="publisher">
-                            by {this.props.publisher}
-                        </div>
-                        <div className='price_grid'>price: {this.props.price ? (this.props.price + ' lv') : 'free'}</div>
-                        <div className="details">
-                            <Link to={'details/' + this.props._id}>view details</Link>
-                        </div>
-                        <div className='del_edit'>
-                           {this.validOwner()} 
-                           {/* <ValidOwnerCheck /> */}
-                        </div>
-                    </div>
-                </div>
-            </div> 
-        )
+          <Link to={'/delete/' + this.props._id} data-toggle="tooltip" data-placement="right" title="Delete Ad" >
+            <i className="far fa-trash-alt"></i>
+          </Link>
+        </span>
+      )
+    } else {
+      return null
     }
+  }
+
+  render = () => {
+    return (
+
+      <Card className='card_c'>
+        <Link to={'details/' + this.props._id}>
+          <Card.Img
+            variant="top"
+            src={this.props.img_url ?
+              this.props.img_url :
+              'https://www.pickeringtest.com/themes/shared/common/images/placeholder.png'}
+            className='card_thumb'
+          />
+        </Link>
+        <Card.Body className='card_body'>
+          <Card.Title className='card_title'>{this.props.title}</Card.Title>
+          <div className="card_text_c">
+            <Card.Subtitle className='card_subTitle'>
+              <em>by</em> <span className='card_publisher'>{this.props.publisher}</span>
+            </Card.Subtitle>
+            <div>
+              <hr />
+              <Card.Text className='card_price'>
+                price: <span className='price_num'>
+                  {(this.props.price || this.props.price === 0) ?
+                    (this.props.price + ' lv') :
+                    'free'}</span>
+              </Card.Text>
+            </div>
+          </div>
+
+        </Card.Body>
+        <Card.Footer className="text-muted card_footer">
+          <Link to={'details/' + this.props._id}>
+            {/* <i class="far fa-eye"></i> */}
+            View details
+          </Link>
+          {this.validOwner()}
+        </Card.Footer>
+      </Card>
+    )
+  }
 }

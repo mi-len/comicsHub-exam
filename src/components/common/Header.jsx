@@ -1,40 +1,36 @@
 import React, { Component } from 'react'
 import observer from '../infrastructure/observer'
-import { Link } from 'react-router-dom'
+import Navigation from './Navigation';
+import Profile from './Profile'
+import '../../styles/styles-m.css'
 
 export default class Header extends Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
 
-        this.state = { 
-            username: null
-        }
-        observer.subscribe(observer.events.loginUser, this.userLoggedIn2)
+    this.state = {
+      username: null
     }
+    observer.subscribe(observer.events.loginUser, this.userLoggedIn2)
+  }
 
-    userLoggedIn2 = username => 
-        this.setState({ username })
-    
-    render = () => {
-        const loggedInSection =
-            <div id="profile">
-                {/* <span id='username'>user: {this.state.username}</span> */}
-                <span id='username'>{sessionStorage.getItem('publisher')}</span>
+  userLoggedIn2 = username =>
+    this.setState({ username })
 
-                <Link to='/logout'><img id='logout_icon' src="http://www.web.remindzapp.com/images/common/793c9824.logout.png" alt="logout"/></Link>
-                {/* <Link to='/logout'><span id='btnLogout'>logout</span></Link> */}
-            </div>
+  render = () => {
+    return (
+      <header className='header_c'>
 
-        return (
-            <header>
-                {/* <Link className='logo-link' to='/'> */}
-                    <span className="logo">
-                        <img src="http://code.ellefu.eu/wp-content/uploads/2018/07/megaph.png" alt="logo"/>
-                    </span>
-                    <span className="header">Comicshub</span>
-                {sessionStorage.getItem('authtoken') ? loggedInSection : null}
-                {/* </Link> */}
-            </header>
-        )
-    }
+        <div className="logo">
+          <img src="http://ellefu.eu/images/comicshub_back6.png" alt="logo" />
+        </div>
+
+        <div className='nav_c'>
+          <Navigation></Navigation>
+          <Profile></Profile>
+        </div>
+
+      </header>
+    )
+  }
 }

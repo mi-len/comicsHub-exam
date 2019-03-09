@@ -1,4 +1,7 @@
-.App {
+
+
+
+/* .App {
     text-align: center;
   }
 
@@ -13,18 +16,10 @@ body {
 }
 
 #container {
-    /* We first create a flex layout context */
     display: flex;
 
-    /* Then we define the flow direction 
-        and if we allow the items to wrap 
-        * Remember this is the same as:
-        * flex-direction: row;
-        * flex-wrap: wrap;
-        */
     flex-flow: wrap;
 
-    /* Then we define how is distributed the remaining space */
     justify-content: center;
 
     align-items: center;
@@ -127,7 +122,6 @@ footer {
     height:40px;
     background-color: rgb(63, 65, 66);
     color:rgb(211, 208, 208);
-    /* align-self: auto; */
     padding-top: 15px;
 }
 
@@ -141,8 +135,6 @@ footer {
 }
 
 #menu {
-    /* background-color: rgb(63, 65, 66); */
-   /* margin-top: -40px; */
     display: block;
     float: left;
     margin-left: 20%;
@@ -151,14 +143,10 @@ footer {
 #menu a {
     padding: 1px 5px 5px 5px;
     text-decoration: none;
-    /* margin: 20px; */
 }
 
 #menu a:hover {
-    /* margin: 20px; */
-    /* padding: 1px 5px 3px 5px;   */
     font-style: oblique;  
-    /* border-top: #e3e6ec solid 4px; */
 }
 
 .active {
@@ -167,15 +155,12 @@ footer {
 
 #add_list {
     margin-top: 0px;
-    /* clear: left; */
 }
 
 #username {
-    /* font-style: oblique; */
     margin-right: 10px;
 }
 
-/* ads */
 .ad {
     background-color: #c0d6f9a6;
     width: 400px;
@@ -215,7 +200,6 @@ footer {
     display: grid;
     text-align: left;
     grid-template-columns: 150px auto;
-    /* grid-template-rows: 25% 50px auto; */
 }
 
 ul {
@@ -284,9 +268,6 @@ ul {
     width: 400px;
     height: 300px;
     margin: auto;
-    /* border-style: solid;
-    border-width: 5px; */
-    /* background-color: #f9dac0; */
     padding: 30px;
     border-radius: 15px;
     text-align: left;
@@ -306,7 +287,6 @@ input, textarea{
 }
 
 #btnCreateAd {
-    /* background-color: #00BFFF; */
     height: 30px;
 }
 
@@ -324,13 +304,11 @@ input, textarea{
     background-color:#ff0d00;
     color: white;
     border: 0;
-    /* background-image: url(); */
 	font-family:Arial;
 	font-size:13px;
 	font-weight:bold;
 	padding:4px 12px;
 	text-decoration:none;
-    /* text-shadow:0px 1px 0px #3a3a3a; */
     margin-left: 130px;
 }
 .delBtn:hover {
@@ -343,11 +321,10 @@ input, textarea{
 }
 
 .block_el:empty {
-    display: block;
+    display: none;
 }
 
 .del_edit {
-    /* background-color: #6f6f70; */
     float: right;
     font-size: 0.9em;
 }
@@ -359,11 +336,9 @@ input, textarea{
 
 .editAd {
     background-color: white;
-    /* transition: transform .2s;  */
 }
 
 .editAd:hover {
-    /* transform: scale(1.2); */
     font-style: oblique;
 }
 
@@ -383,9 +358,7 @@ input, textarea{
 
 .error_msg {
     background-color: #ff0d00;
-    /* border: #ff0d00 2px solid; */
     color: white;
-    /* font-weight: bold; */
     text-align: center; 
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -409,11 +382,9 @@ input, textarea{
 }
 
 .details_info_box {
-    /* background-color: #f5715059; */
     text-align: left;
     width: 500px;
     margin: 5px;
-    /* padding: 5px; */
 }
 
 .details_descr {
@@ -442,15 +413,4 @@ input, textarea{
 #logout_icon:hover {
     transform: scale(1.2);
 }
-
-.private_ul {
-    display: block;
-    margin: auto;
-    width: 800px;
-    text-align: left;
-}
-
-.private_list {
-    margin-top: 15px;
-}
-
+ */

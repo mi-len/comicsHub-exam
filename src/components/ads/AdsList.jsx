@@ -1,47 +1,43 @@
 import React, { Component } from 'react'
-import '../../styles/styles.css'
+import '../../styles/styles-m.css'
 import requester from '../infrastructure/requester'
 import Ad from './Ad'
+import { Spin } from 'antd';
+import observer from '../infrastructure/observer'
 
 export default class AdsList extends Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
 
-        this.state = {
-            ads: []
-        }
+    this.state = {
+      ads: [],
+      isAdm: false
     }
+    observer.subscribe(observer.events.isAdmin, this.checkAdmin)
+  }
 
-    getAds = () => {
-        requester.get('appdata', 'adverts', 'kinvey')
-        .then(res => {
-            this.setState({ ads: res})
-        })
-    }
+  getAds = () => {
+    requester.get('appdata', 'adverts', 'kinvey')
+      .then(res => {
+        this.setState({ ads: res })
+      })
+  }
 
-    endpoint = sessionStorage.getItem('id')
-    
-    isAdm //store result for isAdmin from Kinvey
-    getAdmin = () => {
-        requester.get('user', this.endpoint, 'kinvey')
-        .then(res => {
-            if (res.isAdmin === true) { //assigned here
-                this.isAdm = 1
-            } else {
-                this.isAdm = 0
-            }
-        }).then(this.getAds())
-    }
+  checkAdmin = (isAdm) => {
+    this.setState({ isAdm })
+  }
 
-    componentDidMount = () => this.getAdmin()
+  componentDidMount = () => this.getAds()
 
-    render = () => {
-        return(
-           <div id='add_list'>
-                <div className="ads" className='flex-container'>
-                    {this.state.ads.map((p, i) => <Ad key={p._id} index={i} {...p} isAdm={this.isAdm}/>) }
-                </div>
-           </div>
-        )
-    }
+  render = () => {
+    return (
+      <div>
+        <div className='flex-container ads'>
+          {this.state.ads.length > 0 ?
+            this.state.ads.map((p, i) => <Ad key={p._id} index={i} {...p} isAdm={this.state.isAdm} />) :
+            <Spin size="large" id='spinner_m' />}
+        </div>
+      </div>
+    )
+  }
 }
