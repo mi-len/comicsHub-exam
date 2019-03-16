@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import LoginForm from '../user/LoginForm';
-import RegisterForm from '../user/RegisterForm';
-// import '../../styles/styles.css'
-// import observer from '../infrastructure/observer'
+import LoginForm from '../user/auth/LoginForm';
+import RegisterForm from '../user/auth/RegisterForm';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import Container from 'react-bootstrap/Container'

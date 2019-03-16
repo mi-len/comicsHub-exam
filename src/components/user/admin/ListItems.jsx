@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import requester from '../../infrastructure/requester'
 import { Spin } from 'antd';
-import SingleItem from './SingleAdmItem'
+import SingleAdmItem from './SingleAdmItem'
 import { BackTop } from 'antd';
 
 export default class ListItems extends Component {
@@ -12,7 +12,6 @@ export default class ListItems extends Component {
     this.state = {
       ads: []
     }
-    this.publisher = sessionStorage.getItem('publisher')
   }
 
   getAds = () => {
@@ -24,6 +23,7 @@ export default class ListItems extends Component {
 
   componentDidMount = () => {
     this.getAds()
+    window.scrollTo(0, 0)
   }
 
   content = () => {
@@ -31,7 +31,7 @@ export default class ListItems extends Component {
       <div id='add_list'>
         <h2>List of all Items:</h2>
         <ul>
-          {this.state.ads.length > 0 ? this.state.ads.map((p, i) => <SingleItem key={p._id} index={i} {...p} isAdm={this.isAdm} />) :
+          {this.state.ads.length > 0 ? this.state.ads.map((p, i) => <SingleAdmItem key={p._id} index={i} {...p} />) :
             <Spin size="large" id='spinner_m' />}
         </ul>
         <BackTop />
@@ -39,7 +39,6 @@ export default class ListItems extends Component {
   }
 
   render = () => {
-
     return (
       this.content()
     )

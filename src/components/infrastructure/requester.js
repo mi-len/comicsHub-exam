@@ -32,36 +32,32 @@ function makeRequestWithQuery (method, module, endpoint, auth, publisher) {
   }
 }
 
-// Function to return GET promise
 function get (module, endpoint, auth) {
   return $.ajax(makeRequest('GET', module, endpoint, auth))
 }
 
-// Function to return list of personal items
+// return list of personal items
 function getPersonal (module, endpoint, auth, publisher) {
   return $.ajax(makeRequestWithQuery('GET', module, endpoint, auth, publisher))
 }
 
-// Function to return POST promise
 function post (module, endpoint, auth, data) {
   let req = makeRequest('POST', module, endpoint, auth)
   req.data = data
   return $.ajax(req)
 }
 
-// Function to return PUT promise
 function update (module, endpoint, auth, data) {
   let req = makeRequest('PUT', module, endpoint, auth)
   req.data = data
   return $.ajax(req)
 }
 
-// Function to return DELETE promise
 function remove (module, endpoint, auth) {
   return $.ajax(makeRequest('DELETE', module, endpoint, auth))
 }
 
-// Creates request to Users
+// request to Users
 function makeUserRequest (method, auth) {
   return {
     method,
@@ -72,12 +68,33 @@ function makeUserRequest (method, auth) {
   }
 }
 
-// Function to return GET All Users
+// return GET All Users
 function getUsers (auth) {
   return $.ajax(makeUserRequest('GET', auth))
 }
 
+// return PUT promise =======user======
+function updateUser (auth, id, data) {
+  let req = updateUserRequest('PUT', auth, id)
+  req.data = JSON.stringify(data)
+  return $.ajax(req)
+}
+
+// Update user request  =======user=======
+function updateUserRequest (method, auth, id) {
+  return {
+    method,
+    // url: kinveyBaseUrl + 'user/' + kinveyAppKey + '/' + id + ' HTTP/1.1',
+    url: kinveyBaseUrl + 'user/' + kinveyAppKey + '/' + id,
+    headers: {
+      'Authorization': makeAuth(auth),
+      'Content-Type': 'application/json'
+    }
+  }
+}
+
 export default {
+  updateUser,
   getUsers,
   getPersonal,
   get,

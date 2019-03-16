@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import observer from '../infrastructure/observer'
 import Navigation from './Navigation';
 import Profile from './Profile'
-import '../../styles/styles-m.css'
 
 export default class Header extends Component {
   constructor(props) {
@@ -19,17 +18,14 @@ export default class Header extends Component {
 
   render = () => {
     return (
-      <header className='header_c'>
-
+      <header>
         <div className="logo">
           <img src="http://ellefu.eu/images/comicshub_back6.png" alt="logo" />
         </div>
-
         <div className='nav_c'>
           <Navigation></Navigation>
           <Profile></Profile>
         </div>
-
       </header>
     )
   }

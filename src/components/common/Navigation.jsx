@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import Nav from 'react-bootstrap/Nav'
 import observer from '../infrastructure/observer'
-
 export default class Navigation extends Component {
 
   constructor(props) {
@@ -26,12 +25,13 @@ export default class Navigation extends Component {
   navPlug = () => {
     if (sessionStorage.getItem('authtoken')) {
       return (
-        <div id="menu">
+        <div>
           <Nav>
             <NavLink className="nav" to='/ads' exact activeClassName='active' style={{ textDecoration: 'none' }}>All Comics</NavLink>
             <NavLink className="nav" to='/create' exact activeClassName='active' style={{ textDecoration: 'none' }}>Add New</NavLink>
             {/* <NavLink className="nav" to='/personal' exact activeClassName='active' style={{ textDecoration: 'none' }}>My Items</NavLink> */}
             {this.adminNav()}
+            <NavLink className="nav" to='/marvel' exact activeClassName='active' style={{ textDecoration: 'none' }}>Marvel DB</NavLink>
           </Nav>
         </div>
       )

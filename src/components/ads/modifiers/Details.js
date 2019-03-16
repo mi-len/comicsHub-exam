@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import observer from '../../infrastructure/observer'
 import requester from '../../infrastructure/requester'
-import '../../../styles/styles.css'
 
 export default class Details extends Component {
+
   constructor(props) {
     super(props)
 
@@ -21,10 +21,11 @@ export default class Details extends Component {
 
   componentDidMount = () => {
 
+    window.scrollTo(0, 0)
+    
     requester.get('appdata', 'adverts/' + this.idd, 'kinvey')
       .then(res => {
         // console.log('details res', res);
-
         this.setState({
           title: res.title,
           description: res.description,
@@ -32,7 +33,8 @@ export default class Details extends Component {
           id: res._id,
           img_url: res.img_url,
           phone: res.phone,
-          publisher: res.publisher
+          publisher: res.publisher,
+          item: res
         })
       })
       .catch(res =>
@@ -43,14 +45,30 @@ export default class Details extends Component {
     return (
       <div className='container'>
         <div className='row'>
-          <div className='col-6'>
+          <div className='col-5'>
             <img className='details_img' src={this.state.img_url} alt="" />
           </div>
-          <div className='col-6'>
+          <div className='col-7'>
             <h1>{this.state.title}</h1>
-            <div className='details_info_box'>
-              <div className='card_price'>price:  <span className='price_num'>{this.state.price ? this.state.price : 'free'}</span></div>
-              <div className='details_contact'><span className='details_publisher'>published by:</span> {this.state.publisher}<div className='details_publisher'>{this.state.phone ? 'contact: ' + this.state.phone : null}</div></div>
+            <div>
+              <div className='card_price'>
+                price:  
+                <span className='price_num details_price_num'>
+                  {this.state.price 
+                    ? <span><span className='details_price_num'>{this.state.price}</span> <i className="fas fa-euro-sign"></i></span>
+                    : 'free'}
+                </span>
+              </div>
+              <div className='details_contact'>
+                <span className='details_publisher'>
+                  published by:
+                </span> {this.state.publisher}
+                <div className='details_publisher'>
+                  {this.state.phone 
+                    ? 'contact: ' + this.state.phone 
+                    : null}
+                </div>
+              </div>
               <hr />
               <div className='details_descr'>{this.state.description}</div>
             </div>

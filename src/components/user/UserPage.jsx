@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import requester from '../infrastructure/requester'
-import '../../styles/styles.css'
+// import '../../styles/styles.css'
 import { Spin } from 'antd';
 import SingleItem from './SingleItem'
 

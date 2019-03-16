@@ -4,6 +4,11 @@ import { Popover } from 'antd';
 
 export default class SingleItem extends Component {
 
+  deleteComics = () => {
+    const id = this.props._id
+    this.props.deleteItem(id, this.props.title);            
+  } 
+
   render = () => {
     const content = (
       <div className='admSingle_thumbnail'>
@@ -29,9 +34,10 @@ export default class SingleItem extends Component {
           <Link to={'/edit/' + this.props._id} data-toggle="tooltip" data-placement="right" title="Edit Ad">
             <i className="far fa-edit"></i>
           </Link>
-          <Link to={'/delete/' + this.props._id} data-toggle="tooltip" data-placement="right" title="Delete Ad" >
+          <span onClick={this.deleteComics} data-toggle="tooltip" data-placement="right" title="Delete Ad"><i className="far fa-trash-alt"></i></span>
+          {/* <Link to={'/delete/' + this.props._id} data-toggle="tooltip" data-placement="right" title="Delete Ad" >
             <i className="far fa-trash-alt"></i>
-          </Link>
+          </Link> */}
         </span>
       </li>
     )

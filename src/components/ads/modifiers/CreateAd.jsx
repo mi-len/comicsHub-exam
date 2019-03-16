@@ -39,7 +39,7 @@ export default class CreateAd extends Component {
       })
 
       return
-    } else if (this.state.phone.length < 1) {
+    } else if (this.state.phone.length < 6) {
       this.setState({
         error: 'Please enter your phone number!'
       })
@@ -70,14 +70,17 @@ export default class CreateAd extends Component {
             <form id="createAdForm" onSubmit={this.handleSubmit}>
               <div className='create_error_msg'>{this.state.error}</div>
               
-              <label>Title:</label>
+              <label>Title*:</label>
               <input className="ant-input" name="title" onChange={this.handleChange} type="text" />
               <label>Image url:</label>
               <input className="ant-input" name="img_url" onChange={this.handleChange} type="text" />
               <label>Price:</label>
               <input className="ant-input" name="price" onChange={this.handleChange} type="number" min="1" step="any" /><br />
-              <label>Your phone:</label>
+              <label>Your phone*:</label>
               <input className="ant-input" name="phone" onChange={this.handleChange} type="number" /><br />
+              <p className="create_privacy">
+                We'll never share your number with anyone else.
+              </p>
               <label>Description:</label>
               <textarea className="ant-input" name="description" onChange={this.handleChange} type="text" />
               <input className="ant-input" id="btnCreateAd" value="Create" type="submit" />
