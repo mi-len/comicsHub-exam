@@ -8,5 +8,7 @@ The User have full CRUD operations on his own items.
 
 The Admin can edit and delete all published items and has access to all user's personal page.
 
+There is an option through the MARVEL API to look for information about a certain super hero and the comics he is involved in.
+
 
  
